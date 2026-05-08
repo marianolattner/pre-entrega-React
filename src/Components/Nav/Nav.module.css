@@ -2,16 +2,28 @@
   background-color: var(--color-primary-dark);
   display: flex;
   justify-content: center;
-  gap: 24px;
+  align-items: center;
+  gap: 28px;
   padding: 14px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .link {
-  color: var(--color-background);
   text-decoration: none;
-  font-weight: 500;
+  color: var(--color-background);
+  font-weight: 600;
+  font-size: 15px;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .link:hover {
   color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 14px 20px;
+  }
 }

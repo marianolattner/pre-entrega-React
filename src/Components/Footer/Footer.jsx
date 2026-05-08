@@ -1,36 +1,36 @@
-import { useEffect, useState } from "react";
-import PersonaCard from "../PersonaCard/PersonaCard";
-import styles from "./Footer.module.css";
+import { useEffect, useState } from 'react'
+import PersonaCard from '../PersonaCard/PersonaCard'
+import styles from './Footer.module.css'
 
 function Footer() {
-  const [equipo, setEquipo] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [error, setError] = useState(null);
+  const [equipo, setEquipo] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch("/data/nosotros.json")
+    fetch('/data/nosotros.json')
       .then((res) => {
         if (!res.ok) {
-          throw new Error("No se pudo cargar el equipo");
+          throw new Error('No se pudo cargar el equipo')
         }
-        return res.json();
+        return res.json()
       })
       .then((data) => {
-        setEquipo(data);
-        setCargando(false);
+        setEquipo(data)
+        setCargando(false)
       })
       .catch((err) => {
-        setError(err.message);
-        setCargando(false);
-      });
-  }, []);
+        setError(err.message)
+        setCargando(false)
+      })
+  }, [])
 
   return (
     <footer className={styles.footer}>
       <div className={styles.info}>
         <h2 className={styles.titulo}>Lara Craft</h2>
         <p className={styles.descripcion}>
-          Tienda online de cuadernos con diseño y estilo.
+          Tienda online de cuadernos pensados para inspirar, organizar y acompañar cada idea.
         </p>
       </div>
 
@@ -53,7 +53,7 @@ function Footer() {
 
       <p className={styles.copy}>© 2026 Lara Craft - Todos los derechos reservados</p>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

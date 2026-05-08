@@ -1,4 +1,4 @@
-import styles from "./PersonaCard.module.css";
+import styles from './PersonaCard.module.css'
 
 function PersonaCard({ foto, nombre, puesto, email }) {
   return (
@@ -8,7 +8,7 @@ function PersonaCard({ foto, nombre, puesto, email }) {
       <p className={styles.puesto}>{puesto}</p>
       <p className={styles.email}>{email}</p>
     </div>
-  );
+  )
 }
 
-export default PersonaCard;
+export default PersonaCard

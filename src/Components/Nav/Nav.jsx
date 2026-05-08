@@ -1,4 +1,4 @@
-import styles from "./Nav.module.css";
+import styles from './Nav.module.css'
 
 function Nav() {
   return (
@@ -9,7 +9,7 @@ function Nav() {
       <a href="#" className={styles.link}>Contacto</a>
       <a href="#" className={styles.link}>Carrito</a>
     </nav>
-  );
+  )
 }
 
-export default Nav;
+export default Nav

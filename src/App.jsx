@@ -5,7 +5,10 @@ import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
 function App() {
   return (
     <Layout>
-      <ItemListContainer mensaje="Nuestros cuadernos" />
+      <ItemListContainer
+        mensaje="Nuestros cuadernos"
+        subtitulo="Descubrí diseños únicos para organizar tus ideas con estilo."
+      />
     </Layout>
   )
 }

@@ -1,7 +1,7 @@
-import Header from "../Header/Header";
-import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
-import styles from "./Layout.module.css";
+import Header from '../Header/Header'
+import Nav from '../Nav/Nav'
+import Footer from '../Footer/Footer'
+import styles from './Layout.module.css'
 
 function Layout({ children }) {
   return (
@@ -13,7 +13,7 @@ function Layout({ children }) {
       </main>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default Layout;
+export default Layout

@@ -1,36 +1,41 @@
 .card {
-  background-color: white;
+  width: 100%;
+  min-width: 0;
+  background-color: rgba(255, 255, 255, 0.98);
   color: var(--color-text);
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: var(--radius-lg);
+  padding: 18px 14px;
   text-align: center;
-  width: 220px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .imagen {
-  width: 90px;
-  height: 90px;
+  width: 88px;
+  height: 88px;
   object-fit: cover;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto 12px auto;
+  margin: 0 auto 12px;
+  border: 3px solid var(--color-secondary);
 }
 
 .nombre {
-  margin: 0 0 8px 0;
-  font-size: 20px;
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.2;
 }
 
 .puesto {
-  margin: 0 0 6px 0;
-  font-weight: bold;
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--color-primary);
 }
 
 .email {
   margin: 0;
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-soft);
   word-break: break-word;
+  line-height: 1.4;
 }

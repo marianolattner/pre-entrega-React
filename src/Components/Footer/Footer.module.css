@@ -1,51 +1,57 @@
 .footer {
   background-color: var(--color-primary-dark);
   color: var(--color-background);
-  padding: 32px 24px 20px;
+  padding: 40px 24px 24px;
+  margin-top: 40px;
 }
 
 .info {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .titulo {
-  margin: 0 0 8px 0;
-  font-size: 28px;
+  margin: 0 0 10px;
+  font-size: 30px;
 }
 
 .descripcion {
   margin: 0;
   font-size: 16px;
-}
-
-.equipo {
-  display: grid;
-  grid-template-columns: repeat(3, 220px);
-  gap: 24px;
-  justify-content: center;
-  margin-bottom: 24px;
+  opacity: 0.95;
 }
 
 .mensaje {
   text-align: center;
-  margin-bottom: 24px;
+  margin: 0 0 24px;
+  font-size: 16px;
+}
+
+.equipo {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto 28px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
 }
 
 .copy {
   text-align: center;
   margin: 0;
   font-size: 14px;
+  opacity: 0.9;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .equipo {
-    grid-template-columns: repeat(2, 220px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .equipo {
-    grid-template-columns: 220px;
+    grid-template-columns: 1fr;
   }
 }
