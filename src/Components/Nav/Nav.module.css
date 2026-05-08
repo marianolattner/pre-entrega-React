@@ -1,0 +1,17 @@
+.nav {
+  background-color: var(--color-primary-dark);
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 14px 20px;
+}
+
+.link {
+  color: var(--color-background);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  color: var(--color-accent);
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cuaderno Simple",
+    "precio": 25000,
+    "descripcion": "Cuaderno de hojas rayadas con diseño minimalista.",
+    "categoria": "Cuadernos",
+    "imagen": "/images/cuaderno1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Cuaderno Buenas Vibras",
+    "precio": 35000,
+    "descripcion": "Cuaderno colorido con tapa ilustrada y hojas lisas.",
+    "categoria": "Cuadernos",
+    "imagen": "/images/cuaderno2.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Cuaderno Negro",
+    "precio": 20000,
+    "descripcion": "Cuaderno elegante de tapa negra, ideal para notas y bocetos.",
+    "categoria": "Cuadernos",
+    "imagen": "/images/cuaderno3.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Cuaderno Floral",
+    "precio": 30000,
+    "descripcion": "Cuaderno con tapa floral y hojas rayadas, perfecto para uso diario.",
+    "categoria": "Cuadernos",
+    "imagen": "/images/cuaderno4.jpg"
+  }
+]

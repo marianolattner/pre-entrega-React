@@ -1,0 +1,36 @@
+.card {
+  background-color: white;
+  color: var(--color-text);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.imagen {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 12px auto;
+}
+
+.nombre {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.puesto {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.email {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  word-break: break-word;
+}

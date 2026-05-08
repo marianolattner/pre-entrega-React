@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nombre": "Lara Ciani",
+    "email": "lara.ciani@laracraft.com",
+    "puesto": "Product Owner",
+    "foto": "/images/avatar2.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Mariano Lattner",
+    "email": "mariano.lattner@laracraft.com",
+    "puesto": "Developer",
+    "foto": "/images/avatar1.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Sofía Martínez",
+    "email": "sofia.martinez@laracraft.com",
+    "puesto": "Diseñadora UX/UI",
+    "foto": "/images/avatar3.webp"
+  },
+  {
+    "id": 4,
+    "nombre": "Lucas Fernández",
+    "email": "lucas.fernandez@laracraft.com",
+    "puesto": "Marketing Manager",
+    "foto": "/images/avatar4.jpg"
+  }
+]

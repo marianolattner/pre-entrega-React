@@ -1,0 +1,17 @@
+.header {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  text-align: center;
+  padding: 20px;
+}
+
+.logo {
+  margin: 0;
+  font-size: 32px;
+}
+
+.slogan {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 16px;
+}
