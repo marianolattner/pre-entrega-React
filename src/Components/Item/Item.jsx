@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import Swal from 'sweetalert2'
+import ProductoModal from '../ProductoModal/ProductoModal'
 import styles from './Item.module.css'
 
-function Item({ nombre, precio, descripcion, imagen }) {
+function Item({ producto, agregarAlCarrito, favoritos, toggleFavorito }) {
   const [cantidad, setCantidad] = useState(0)
-  const [esFavorito, setEsFavorito] = useState(false)
+  const [modalAbierto, setModalAbierto] = useState(false)
+
+  const esFavorito = favoritos.some((item) => item.id === producto.id)
 
   const incrementar = () => {
     setCantidad(cantidad + 1)
@@ -16,11 +19,11 @@ function Item({ nombre, precio, descripcion, imagen }) {
     }
   }
 
-  const toggleFavorito = () => {
-    setEsFavorito(!esFavorito)
+  const manejarFavorito = () => {
+    toggleFavorito(producto)
   }
 
-  const agregarAlCarrito = () => {
+  const manejarAgregarAlCarrito = () => {
     if (cantidad === 0) {
       Swal.fire({
         title: 'Cantidad inválida',
@@ -34,9 +37,11 @@ function Item({ nombre, precio, descripcion, imagen }) {
       return
     }
 
+    agregarAlCarrito(producto, cantidad)
+
     Swal.fire({
       title: 'Producto agregado',
-      text: `Agregaste ${cantidad} unidad/es de ${nombre} al carrito.`,
+      text: `Agregaste ${cantidad} unidad/es de ${producto.nombre} al carrito.`,
       icon: 'success',
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#2f5d50',
@@ -48,41 +53,56 @@ function Item({ nombre, precio, descripcion, imagen }) {
   }
 
   return (
-    <article className={styles.card}>
-      <div className={styles.imagenWrapper}>
-        <img src={imagen} alt={nombre} className={styles.imagen} />
-        <button
-          className={styles.favorito}
-          onClick={toggleFavorito}
-          aria-label="Marcar como favorito"
-        >
-          {esFavorito ? '❤️' : '🤍'}
-        </button>
-      </div>
+    <>
+      <article className={styles.card}>
+        <div className={styles.imagenWrapper}>
+          <img
+            src={producto.imagen}
+            alt={producto.nombre}
+            className={styles.imagen}
+            onClick={() => setModalAbierto(true)}
+          />
 
-      <div className={styles.contenido}>
-        <h3 className={styles.nombre}>{nombre}</h3>
-        <p className={styles.descripcion}>{descripcion}</p>
-      </div>
-
-      <div className={styles.acciones}>
-        <p className={styles.precio}>${precio}</p>
-
-        <div className={styles.contador}>
-          <button className={styles.botonCantidad} onClick={decrementar}>
-            -
-          </button>
-          <span className={styles.cantidad}>{cantidad}</span>
-          <button className={styles.botonCantidad} onClick={incrementar}>
-            +
+          <button
+            className={styles.favorito}
+            onClick={manejarFavorito}
+            aria-label="Marcar como favorito"
+          >
+            {esFavorito ? '❤️' : '🤍'}
           </button>
         </div>
 
-        <button className={styles.boton} onClick={agregarAlCarrito}>
-          Agregar al carrito
-        </button>
-      </div>
-    </article>
+        <div className={styles.contenido}>
+          <h3 className={styles.nombre}>{producto.nombre}</h3>
+          <p className={styles.descripcion}>{producto.descripcion}</p>
+        </div>
+
+        <div className={styles.acciones}>
+          <p className={styles.precio}>${producto.precio}</p>
+
+          <div className={styles.contador}>
+            <button className={styles.botonCantidad} onClick={decrementar}>
+              -
+            </button>
+            <span className={styles.cantidad}>{cantidad}</span>
+            <button className={styles.botonCantidad} onClick={incrementar}>
+              +
+            </button>
+          </div>
+
+          <button className={styles.boton} onClick={manejarAgregarAlCarrito}>
+            Agregar al carrito
+          </button>
+        </div>
+      </article>
+
+      {modalAbierto && (
+        <ProductoModal
+          producto={producto}
+          onClose={() => setModalAbierto(false)}
+        />
+      )}
+    </>
   )
 }
 

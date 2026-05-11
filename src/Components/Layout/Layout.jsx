@@ -3,11 +3,11 @@ import Nav from '../Nav/Nav'
 import Footer from '../Footer/Footer'
 import styles from './Layout.module.css'
 
-function Layout({ children }) {
+function Layout({ children, carritoCantidad }) {
   return (
     <div className={styles.layout}>
       <Header />
-      <Nav />
+      <Nav carritoCantidad={carritoCantidad} />
       <main className={styles.main}>
         {children}
       </main>

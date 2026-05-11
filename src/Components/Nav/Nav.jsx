@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom'
 import styles from './Nav.module.css'
 
-function Nav() {
+function Nav({ carritoCantidad }) {
   return (
     <nav className={styles.nav}>
-      <a href="#" className={styles.link}>Inicio</a>
-      <a href="#" className={styles.link}>Cuadernos</a>
-      <a href="#" className={styles.link}>Ofertas</a>
-      <a href="#" className={styles.link}>Contacto</a>
-      <a href="#" className={styles.link}>Carrito</a>
+      <Link to="/" className={styles.link}>Inicio</Link>
+      <Link to="/favoritos" className={styles.link}>Favoritos</Link>
+      <Link to="/carrito" className={styles.link}>
+        🛒{carritoCantidad > 0 ? ` ${carritoCantidad}` : ''}
+      </Link>
     </nav>
   )
 }

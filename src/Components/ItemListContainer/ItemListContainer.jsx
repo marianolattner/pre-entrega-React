@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList'
 import styles from './ItemListContainer.module.css'
 
-function ItemListContainer({ mensaje, subtitulo }) {
+function ItemListContainer({
+  mensaje,
+  subtitulo,
+  agregarAlCarrito,
+  favoritos,
+  toggleFavorito
+}) {
   const [productos, setProductos] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
@@ -33,7 +39,14 @@ function ItemListContainer({ mensaje, subtitulo }) {
       {cargando && <p className={styles.mensaje}>Cargando productos...</p>}
       {error && <p className={styles.mensaje}>Error: {error}</p>}
 
-      {!cargando && !error && <ItemList productos={productos} />}
+      {!cargando && !error && (
+        <ItemList
+          productos={productos}
+          agregarAlCarrito={agregarAlCarrito}
+          favoritos={favoritos}
+          toggleFavorito={toggleFavorito}
+        />
+      )}
     </section>
   )
 }
