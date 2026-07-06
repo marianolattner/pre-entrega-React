@@ -1,45 +1,18 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
 import Layout from './Components/Layout/Layout'
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
 import CarritoPage from './Components/CarritoPage/CarritoPage'
 import FavoritosPage from './Components/FavoritosPage/FavoritosPage'
+import LoginPage from './Pages/LoginPage/LoginPage'
+import RegisterPage from './Pages/RegisterPage/RegisterPage'
+import AdminPage from './Pages/AdminPage/AdminPage'
+import EditProductPage from './Pages/EditProductPage/EditProductPage'
 
 function App() {
-  const [carrito, setCarrito] = useState([])
-  const [favoritos, setFavoritos] = useState([])
-
-  const agregarAlCarrito = (producto, cantidad) => {
-    setCarrito((prev) => {
-      const existente = prev.find((item) => item.id === producto.id)
-
-      if (existente) {
-        return prev.map((item) =>
-          item.id === producto.id
-            ? { ...item, cantidad: item.cantidad + cantidad }
-            : item
-        )
-      }
-
-      return [...prev, { ...producto, cantidad }]
-    })
-  }
-
-  const toggleFavorito = (producto) => {
-    setFavoritos((prev) => {
-      const yaExiste = prev.some((item) => item.id === producto.id)
-
-      if (yaExiste) {
-        return prev.filter((item) => item.id !== producto.id)
-      }
-
-      return [...prev, producto]
-    })
-  }
-
   return (
-    <Layout carritoCantidad={carrito.length}>
+    <Layout>
       <Routes>
         <Route
           path="/"
@@ -47,9 +20,6 @@ function App() {
             <ItemListContainer
               mensaje="Nuestros cuadernos"
               subtitulo="Descubrí diseños únicos para organizar tus ideas con estilo."
-              agregarAlCarrito={agregarAlCarrito}
-              favoritos={favoritos}
-              toggleFavorito={toggleFavorito}
             />
           }
         />
@@ -60,21 +30,47 @@ function App() {
             <ItemListContainer
               mensaje="Nuestros cuadernos"
               subtitulo="Explorá toda nuestra colección."
-              agregarAlCarrito={agregarAlCarrito}
-              favoritos={favoritos}
-              toggleFavorito={toggleFavorito}
             />
+          }
+        />
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
+        <Route
+          path="/favoritos"
+          element={
+            <ProtectedRoute>
+              <FavoritosPage />
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/carrito"
-          element={<CarritoPage carrito={carrito} />}
+          element={
+            <ProtectedRoute>
+              <CarritoPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
-          path="/favoritos"
-          element={<FavoritosPage favoritos={favoritos} />}
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/editar/:id"
+          element={
+            <ProtectedRoute>
+              <EditProductPage />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </Layout>

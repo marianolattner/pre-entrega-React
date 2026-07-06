@@ -1,0 +1,129 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0 40px;
+}
+
+.titulo {
+  text-align: left;
+  font-size: 42px;
+  margin: 0 0 24px;
+  color: var(--color-primary);
+}
+
+.subtitulo {
+  margin: 0 0 16px;
+  color: var(--color-text);
+}
+
+.listado {
+  margin-top: 32px;
+  background-color: rgba(18, 52, 37, 0.65);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 90px 1.8fr 0.9fr 130px 230px;
+  gap: 18px;
+  align-items: center;
+  background-color: #0f2f22;
+  border: 1px solid rgba(126, 217, 168, 0.1);
+  border-radius: 16px;
+  padding: 14px 18px;
+  overflow: hidden;
+}
+
+.imagen {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: #16382b;
+}
+
+.nombre {
+  margin: 0;
+  font-size: 20px;
+  color: var(--color-text);
+}
+
+.texto {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 14px;
+}
+
+.precio {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-primary);
+  justify-self: start;
+  white-space: nowrap;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.editar {
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: #072117;
+  text-decoration: none;
+  font-weight: 800;
+  min-width: 100px;
+}
+
+.editar:hover {
+  background-color: var(--color-accent);
+}
+
+.eliminar {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background-color: #d45b76;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.eliminar:hover {
+  background-color: #bc4861;
+}
+
+@media (max-width: 1000px) {
+  .card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .acciones {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

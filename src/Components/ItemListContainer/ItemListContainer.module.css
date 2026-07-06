@@ -4,16 +4,16 @@
 
 .titulo {
   text-align: center;
-  font-size: 36px;
+  font-size: 40px;
   margin: 0 0 12px;
-  color: var(--color-text);
+  color: var(--color-primary);
 }
 
 .subtitulo {
   text-align: center;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--color-text-soft);
-  margin: 0 0 32px;
+  margin: 0 0 24px;
 }
 
 .mensaje {

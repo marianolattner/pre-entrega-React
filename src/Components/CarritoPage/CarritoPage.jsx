@@ -1,13 +1,17 @@
+import { Helmet } from 'react-helmet-async'
+import { useCart } from '../../context/useCart'
 import styles from './CarritoPage.module.css'
 
-function CarritoPage({ carrito }) {
-  const total = carrito.reduce(
-    (acc, item) => acc + item.precio * item.cantidad,
-    0
-  )
+function CarritoPage() {
+  const { carrito, precioTotal, eliminarDelCarrito, vaciarCarrito } = useCart()
 
   return (
     <section className={styles.page}>
+      <Helmet>
+        <title>Carrito | Lara Craft</title>
+        <meta name="description" content="Revisá tu carrito de compras en Lara Craft." />
+      </Helmet>
+
       <h2 className={styles.titulo}>Carrito de compras</h2>
 
       {carrito.length === 0 ? (
@@ -30,13 +34,23 @@ function CarritoPage({ carrito }) {
                   <p className={styles.subtotal}>
                     Subtotal: ${item.precio * item.cantidad}
                   </p>
+
+                  <button
+                    className={styles.eliminar}
+                    onClick={() => eliminarDelCarrito(item.id)}
+                  >
+                    Eliminar
+                  </button>
                 </div>
               </article>
             ))}
           </div>
 
           <div className={styles.resumen}>
-            <h3 className={styles.total}>Total: ${total}</h3>
+            <h3 className={styles.total}>Total: ${precioTotal}</h3>
+            <button className={styles.vaciar} onClick={vaciarCarrito}>
+              Vaciar carrito
+            </button>
           </div>
         </>
       )}

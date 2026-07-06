@@ -1,17 +1,11 @@
 import Item from '../Item/Item'
 import styles from './ItemList.module.css'
 
-function ItemList({ productos, agregarAlCarrito, favoritos, toggleFavorito }) {
+function ItemList({ productos }) {
   return (
     <div className={styles.grid}>
       {productos.map((producto) => (
-        <Item
-          key={producto.id}
-          producto={producto}
-          agregarAlCarrito={agregarAlCarrito}
-          favoritos={favoritos}
-          toggleFavorito={toggleFavorito}
-        />
+        <Item key={producto.id} producto={producto} />
       ))}
     </div>
   )

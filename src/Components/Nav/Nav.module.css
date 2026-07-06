@@ -1,29 +1,47 @@
 .nav {
-  background-color: var(--color-primary-dark);
+  background-color: #0c261b;
+  border-bottom: 1px solid rgba(126, 217, 168, 0.18);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 28px;
+  gap: 18px;
   padding: 14px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
 }
 
 .link {
-  text-decoration: none;
-  color: var(--color-background);
-  font-weight: 600;
-  font-size: 15px;
-  transition: color 0.2s ease, transform 0.2s ease;
+  color: var(--color-text);
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: 0.2s ease;
 }
 
 .link:hover {
-  color: var(--color-accent);
-  transform: translateY(-1px);
+  color: var(--color-primary);
+  background-color: rgba(126, 217, 168, 0.08);
 }
 
-@media (max-width: 700px) {
-  .nav {
-    flex-wrap: wrap;
-    gap: 14px 20px;
-  }
+.user {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid rgba(126, 217, 168, 0.2);
+  border-radius: 10px;
+}
+
+.logout {
+  padding: 8px 12px;
+  border: 1px solid rgba(126, 217, 168, 0.2);
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.logout:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }

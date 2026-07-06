@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import ProductoModal from '../ProductoModal/ProductoModal'
+import { useCart } from '../../context/useCart'
+import { useFavorites } from '../../context/useFavorites'
 import styles from './Item.module.css'
 
-function Item({ producto, agregarAlCarrito, favoritos, toggleFavorito }) {
+function Item({ producto }) {
   const [cantidad, setCantidad] = useState(0)
   const [modalAbierto, setModalAbierto] = useState(false)
 
-  const esFavorito = favoritos.some((item) => item.id === producto.id)
+  const { agregarAlCarrito } = useCart()
+  const { toggleFavorito, esFavorito } = useFavorites()
 
   const incrementar = () => {
     setCantidad(cantidad + 1)
@@ -17,10 +20,6 @@ function Item({ producto, agregarAlCarrito, favoritos, toggleFavorito }) {
     if (cantidad > 0) {
       setCantidad(cantidad - 1)
     }
-  }
-
-  const manejarFavorito = () => {
-    toggleFavorito(producto)
   }
 
   const manejarAgregarAlCarrito = () => {
@@ -65,10 +64,10 @@ function Item({ producto, agregarAlCarrito, favoritos, toggleFavorito }) {
 
           <button
             className={styles.favorito}
-            onClick={manejarFavorito}
+            onClick={() => toggleFavorito(producto)}
             aria-label="Marcar como favorito"
           >
-            {esFavorito ? '❤️' : '🤍'}
+            {esFavorito(producto.id) ? '❤️' : '🤍'}
           </button>
         </div>
 

@@ -1,0 +1,142 @@
+.form {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.helper {
+  margin: 10px 0 0;
+  color: var(--color-text-soft);
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.label {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: #0c261b;
+  color: var(--color-text);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-soft);
+}
+
+.textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.uploadBox {
+  min-height: 58px;
+  border: 1px dashed rgba(126, 217, 168, 0.45);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  background-color: rgba(126, 217, 168, 0.04);
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  padding: 12px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.preview {
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background-color: #16382b;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.secondaryButton {
+  padding: 12px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--color-text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.boton {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-primary);
+  color: #072117;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: var(--color-accent);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview {
+    max-width: 100%;
+  }
+
+  .actions {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+}
