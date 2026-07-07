@@ -1,0 +1,25 @@
+.wrapper {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto 26px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 16px;
+  outline: none;
+  background-color: #0c261b;
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+}
+
+.input::placeholder {
+  color: var(--color-text-soft);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+}

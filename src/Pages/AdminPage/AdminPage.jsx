@@ -6,6 +6,7 @@ import { getProducts, deleteProduct } from '../../services/products'
 import ProductForm from '../../Components/ProductForm/ProductForm'
 import styles from './AdminPage.module.css'
 import { Helmet } from 'react-helmet-async'
+import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner'
 
 function AdminPage() {
   const [productos, setProductos] = useState([])
@@ -89,8 +90,8 @@ function AdminPage() {
         <h3 className={styles.subtitulo}>Productos cargados</h3>
 
         {cargando ? (
-          <p>Cargando productos...</p>
-        ) : (
+  <LoadingSpinner mensaje="Cargando productos..." />
+) : (
           <div className={styles.grid}>
             {productos.map((producto) => (
               <article key={producto.id} className={styles.card}>
@@ -105,7 +106,10 @@ function AdminPage() {
                   <p className={styles.texto}>{producto.descripcion}</p>
                 </div>
 
-                <p className={styles.texto}>{producto.categoria}</p>
+                <div className={styles.infoSecundaria}>
+  <p className={styles.texto}>{producto.categoria}</p>
+  <p className={styles.texto}>Stock: {producto.stock ?? 'No cargado'}</p>
+</div>
 
                 <p className={styles.precio}>${producto.precio}</p>
 

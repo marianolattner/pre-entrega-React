@@ -2,27 +2,20 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './Components/Layout/Layout'
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
-import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
 import CarritoPage from './Components/CarritoPage/CarritoPage'
 import FavoritosPage from './Components/FavoritosPage/FavoritosPage'
+import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
 import LoginPage from './Pages/LoginPage/LoginPage'
 import RegisterPage from './Pages/RegisterPage/RegisterPage'
 import AdminPage from './Pages/AdminPage/AdminPage'
 import EditProductPage from './Pages/EditProductPage/EditProductPage'
+import HomePage from './Pages/HomePage/HomePage'
 
 function App() {
   return (
     <Layout>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ItemListContainer
-              mensaje="Nuestros cuadernos"
-              subtitulo="Descubrí diseños únicos para organizar tus ideas con estilo."
-            />
-          }
-        />
+        <Route path="/" element={<HomePage />} />
 
         <Route
           path="/productos"
@@ -58,7 +51,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute adminOnly={true}>
               <AdminPage />
             </ProtectedRoute>
           }
@@ -67,7 +60,7 @@ function App() {
         <Route
           path="/admin/editar/:id"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute adminOnly={true}>
               <EditProductPage />
             </ProtectedRoute>
           }

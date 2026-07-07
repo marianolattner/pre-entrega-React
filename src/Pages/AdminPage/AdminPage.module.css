@@ -116,6 +116,12 @@
   background-color: #bc4861;
 }
 
+.infoSecundaria {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 @media (max-width: 1000px) {
   .card {
     grid-template-columns: 1fr;

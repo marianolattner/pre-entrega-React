@@ -1,0 +1,56 @@
+.spinnerContainer {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.cuaderno {
+  position: relative;
+  width: 70px;
+  height: 90px;
+  animation: girar 1.2s linear infinite;
+  transform-origin: center center;
+}
+
+.tapa {
+  width: 70px;
+  height: 90px;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-soft);
+}
+
+.espiral {
+  position: absolute;
+  left: -8px;
+  top: 8px;
+  width: 12px;
+  height: 74px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #d9e7df 0px,
+    #d9e7df 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border-radius: 8px;
+}
+
+.mensaje {
+  margin: 0;
+  font-size: 20px;
+  color: var(--color-text);
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -109,3 +109,55 @@
   cursor: pointer;
   font-weight: 800;
 }
+
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.botonCantidad {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: #072117;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.botonCantidad:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cantidad {
+  min-width: 24px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.resumenBotones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.finalizar {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-primary);
+  color: #072117;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.finalizar:hover {
+  background-color: var(--color-accent);
+}

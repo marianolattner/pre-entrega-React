@@ -1,14 +1,23 @@
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../context/useAuth'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
-function ProtectedRoute({ children }) {
-  const { user, loadingAuth } = useAuth()
+function ProtectedRoute({ children, adminOnly = false }) {
+  const { user, isAdmin, loadingAuth } = useAuth()
 
   if (loadingAuth) {
-    return <p>Cargando autenticación...</p>
+    return <LoadingSpinner mensaje="Verificando permisos..." />
   }
 
-  return user ? children : <Navigate to="/login" />
+  if (!user) {
+    return <Navigate to="/login" />
+  }
+
+  if (adminOnly && !isAdmin) {
+    return <Navigate to="/" />
+  }
+
+  return children
 }
 
 export default ProtectedRoute

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import ProductForm from '../../Components/ProductForm/ProductForm'
 import { getProductById } from '../../services/products'
 import styles from './EditProductPage.module.css'
+import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner'
 
 function EditProductPage() {
   const { id } = useParams()
@@ -33,8 +34,8 @@ function EditProductPage() {
   }
 
   if (cargando) {
-    return <p>Cargando producto...</p>
-  }
+  return <LoadingSpinner mensaje="Cargando producto..." />
+}
 
   if (!producto) {
     return <p>No se encontró el producto.</p>

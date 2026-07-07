@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { createProduct, updateProduct } from '../../services/products'
 import { uploadImageToImgBB } from '../../services/imageUpload'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 import styles from './ProductForm.module.css'
 
 function ProductForm({
@@ -18,6 +19,7 @@ function ProductForm({
     descripcion: '',
     imagen: '',
     categoria: '',
+    stock: '',
   })
 
   const [imagenFile, setImagenFile] = useState(null)
@@ -32,6 +34,7 @@ function ProductForm({
         descripcion: initialData.descripcion || '',
         imagen: initialData.imagen || '',
         categoria: initialData.categoria || '',
+        stock: initialData.stock || '',
       })
 
       setPreviewUrl(initialData.imagen || '')
@@ -77,6 +80,7 @@ function ProductForm({
       descripcion: '',
       imagen: '',
       categoria: '',
+      stock: '',
     })
     setImagenFile(null)
     setPreviewUrl('')
@@ -89,7 +93,8 @@ function ProductForm({
       !formData.nombre ||
       !formData.precio ||
       !formData.descripcion ||
-      !formData.categoria
+      !formData.categoria ||
+      !formData.stock
     ) {
       toast.error('Completá todos los campos obligatorios')
       return
@@ -97,6 +102,11 @@ function ProductForm({
 
     if (Number(formData.precio) <= 0) {
       toast.error('El precio debe ser mayor a 0')
+      return
+    }
+
+    if (Number(formData.stock) < 0) {
+      toast.error('El stock no puede ser negativo')
       return
     }
 
@@ -121,6 +131,7 @@ function ProductForm({
         descripcion: formData.descripcion,
         categoria: formData.categoria,
         imagen: imageUrl,
+        stock: Number(formData.stock),
       }
 
       if (isEditing && productId) {
@@ -158,6 +169,7 @@ function ProductForm({
         descripcion: initialData.descripcion || '',
         imagen: initialData.imagen || '',
         categoria: initialData.categoria || '',
+        stock: initialData.stock || '',
       })
       setPreviewUrl(initialData.imagen || '')
       setImagenFile(null)
@@ -165,6 +177,14 @@ function ProductForm({
     }
 
     resetForm()
+  }
+
+  if (cargando) {
+    return (
+      <LoadingSpinner
+        mensaje={isEditing ? 'Actualizando producto...' : 'Guardando producto...'}
+      />
+    )
   }
 
   return (
@@ -199,6 +219,16 @@ function ProductForm({
             name="precio"
             placeholder="Ej: 30000"
             value={formData.precio}
+            onChange={handleChange}
+          />
+
+          <label className={styles.label}>Stock</label>
+          <input
+            className={styles.input}
+            type="number"
+            name="stock"
+            placeholder="Ej: 10"
+            value={formData.stock}
             onChange={handleChange}
           />
 
@@ -254,14 +284,8 @@ function ProductForm({
           Cancelar
         </button>
 
-        <button className={styles.boton} type="submit" disabled={cargando}>
-          {cargando
-            ? isEditing
-              ? 'Actualizando...'
-              : 'Creando...'
-            : isEditing
-            ? 'Guardar cambios'
-            : 'Guardar producto'}
+        <button className={styles.boton} type="submit">
+          {isEditing ? 'Guardar cambios' : 'Guardar producto'}
         </button>
       </div>
     </form>

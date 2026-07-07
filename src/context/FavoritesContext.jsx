@@ -1,10 +1,35 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState } from 'react'
+/* eslint-disable react-hooks/set-state-in-effect */
+import { createContext, useEffect, useState } from 'react'
+import { useAuth } from './useAuth'
 
 export const FavoritesContext = createContext()
 
 export function FavoritesProvider({ children }) {
+  const { user } = useAuth()
   const [favoritos, setFavoritos] = useState([])
+
+  const storageKey = user ? `favoritos_${user.uid}` : null
+
+  useEffect(() => {
+    if (!user || !storageKey) {
+      setFavoritos([])
+      return
+    }
+
+    const favoritosGuardados = localStorage.getItem(storageKey)
+
+    if (favoritosGuardados) {
+      setFavoritos(JSON.parse(favoritosGuardados))
+    } else {
+      setFavoritos([])
+    }
+  }, [user, storageKey])
+
+  useEffect(() => {
+    if (!user || !storageKey) return
+    localStorage.setItem(storageKey, JSON.stringify(favoritos))
+  }, [favoritos, user, storageKey])
 
   const toggleFavorito = (producto) => {
     setFavoritos((prev) => {
@@ -23,7 +48,9 @@ export function FavoritesProvider({ children }) {
   }
 
   return (
-    <FavoritesContext.Provider value={{ favoritos, toggleFavorito, esFavorito }}>
+    <FavoritesContext.Provider
+      value={{ favoritos, toggleFavorito, esFavorito }}
+    >
       {children}
     </FavoritesContext.Provider>
   )

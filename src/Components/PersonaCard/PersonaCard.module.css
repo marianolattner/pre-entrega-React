@@ -20,22 +20,21 @@
 }
 
 .nombre {
-  margin: 0 0 8px;
-  font-size: 19px;
-  line-height: 1.2;
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2a24;
 }
 
 .puesto {
-  margin: 0 0 8px;
-  font-size: 15px;
+  margin: 0 0 10px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #2f8f63;
 }
 
 .email {
   margin: 0;
-  font-size: 14px;
-  color: var(--color-text-soft);
-  word-break: break-word;
-  line-height: 1.4;
+  font-size: 15px;
+  color: #5a6b63;
 }

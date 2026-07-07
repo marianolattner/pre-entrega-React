@@ -123,3 +123,39 @@
 .boton:hover {
   background-color: var(--color-accent);
 }
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background-color: rgba(126, 217, 168, 0.12);
+  border: 1px solid rgba(126, 217, 168, 0.2);
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stock {
+  font-size: 14px;
+  color: var(--color-text-soft);
+  font-weight: 600;
+}
+.stockDisponible {
+  font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.boton:disabled,
+.botonCantidad:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

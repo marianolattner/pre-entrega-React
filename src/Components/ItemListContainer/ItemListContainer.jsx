@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import Pagination from '../Pagination/Pagination'
 import { getProducts } from '../../services/products'
 import styles from './ItemListContainer.module.css'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 function ItemListContainer({ mensaje, subtitulo }) {
   const [productos, setProductos] = useState([])
@@ -13,7 +14,7 @@ function ItemListContainer({ mensaje, subtitulo }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
-  const itemsPerPage = 6
+  const itemsPerPage = 2
 
   useEffect(() => {
     async function cargarProductos() {
@@ -58,7 +59,7 @@ function ItemListContainer({ mensaje, subtitulo }) {
   return (
     <section className={styles.container}>
       <Helmet>
-        <title>Lara Craft | Cuadernos y papelería</title>
+        <title>Lara Craft | Productos</title>
         <meta
           name="description"
           content="Explorá cuadernos y productos de papelería en Lara Craft."
@@ -70,7 +71,7 @@ function ItemListContainer({ mensaje, subtitulo }) {
 
       <SearchBar value={searchTerm} onChange={handleSearchChange} />
 
-      {cargando && <p className={styles.mensaje}>Cargando productos...</p>}
+      {cargando && <LoadingSpinner mensaje="Cargando productos..." />}
       {error && <p className={styles.mensaje}>{error}</p>}
 
       {!cargando && !error && (

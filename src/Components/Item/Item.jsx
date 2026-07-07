@@ -9,10 +9,27 @@ function Item({ producto }) {
   const [cantidad, setCantidad] = useState(0)
   const [modalAbierto, setModalAbierto] = useState(false)
 
-  const { agregarAlCarrito } = useCart()
+  const { carrito, agregarAlCarrito } = useCart()
   const { toggleFavorito, esFavorito } = useFavorites()
 
+  const productoEnCarrito = carrito.find((item) => item.id === producto.id)
+  const cantidadEnCarrito = productoEnCarrito ? productoEnCarrito.cantidad : 0
+  const stockDisponible = Math.max((producto.stock ?? 0) - cantidadEnCarrito, 0)
+
   const incrementar = () => {
+    if (cantidad >= stockDisponible) {
+      Swal.fire({
+        title: 'Stock máximo alcanzado',
+        text: `Ya tenés ${cantidadEnCarrito} en el carrito y solo quedan ${stockDisponible} unidad/es disponibles para agregar.`,
+        icon: 'info',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#2f8f63',
+        background: '#0e2b1f',
+        color: '#ecf8f1',
+      })
+      return
+    }
+
     setCantidad(cantidad + 1)
   }
 
@@ -29,9 +46,22 @@ function Item({ producto }) {
         text: 'Primero seleccioná al menos una unidad.',
         icon: 'warning',
         confirmButtonText: 'Entendido',
-        confirmButtonColor: '#2f5d50',
-        background: '#f7f4ed',
-        color: '#2e2e2e',
+        confirmButtonColor: '#2f8f63',
+        background: '#0e2b1f',
+        color: '#ecf8f1',
+      })
+      return
+    }
+
+    if (cantidad > stockDisponible) {
+      Swal.fire({
+        title: 'Stock insuficiente',
+        text: `Ya tenés ${cantidadEnCarrito} en el carrito. Solo podés agregar ${stockDisponible} unidad/es más.`,
+        icon: 'warning',
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: '#2f8f63',
+        background: '#0e2b1f',
+        color: '#ecf8f1',
       })
       return
     }
@@ -43,9 +73,9 @@ function Item({ producto }) {
       text: `Agregaste ${cantidad} unidad/es de ${producto.nombre} al carrito.`,
       icon: 'success',
       confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#2f5d50',
-      background: '#f7f4ed',
-      color: '#2e2e2e',
+      confirmButtonColor: '#2f8f63',
+      background: '#0e2b1f',
+      color: '#ecf8f1',
     })
 
     setCantidad(0)
@@ -74,6 +104,16 @@ function Item({ producto }) {
         <div className={styles.contenido}>
           <h3 className={styles.nombre}>{producto.nombre}</h3>
           <p className={styles.descripcion}>{producto.descripcion}</p>
+
+          <div className={styles.meta}>
+            <span className={styles.badge}>{producto.categoria || 'Sin categoría'}</span>
+            <span className={styles.stock}>
+              Stock total: {producto.stock ?? 'No cargado'}
+            </span>
+            <span className={styles.stockDisponible}>
+              Disponible para agregar: {stockDisponible}
+            </span>
+          </div>
         </div>
 
         <div className={styles.acciones}>
@@ -84,13 +124,21 @@ function Item({ producto }) {
               -
             </button>
             <span className={styles.cantidad}>{cantidad}</span>
-            <button className={styles.botonCantidad} onClick={incrementar}>
+            <button
+              className={styles.botonCantidad}
+              onClick={incrementar}
+              disabled={stockDisponible === 0}
+            >
               +
             </button>
           </div>
 
-          <button className={styles.boton} onClick={manejarAgregarAlCarrito}>
-            Agregar al carrito
+          <button
+            className={styles.boton}
+            onClick={manejarAgregarAlCarrito}
+            disabled={stockDisponible === 0}
+          >
+            {stockDisponible === 0 ? 'Sin stock disponible' : 'Agregar al carrito'}
           </button>
         </div>
       </article>
